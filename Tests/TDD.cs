@@ -9,8 +9,7 @@ public class TDD
     {
         var generator = new Generator()
             .AddRule(() => 5)
-            .AddRule((TestInnerObject inner) => inner.Hello, Random.Shared.Next)
-            .SetListSize((TestObject obj) => obj.TwoList, 500);
+            .AddRule((TestInnerObject inner) => inner.Hello, g => Random.Shared.Next(10));
 
         var data = generator.Generate<TestObject>();
 
@@ -20,6 +19,7 @@ public class TDD
 
 public class TestObject
 {
+    public string FFFF { get; set; }
     public int Hello { get; set; }
     public IEnumerable<int>? HelloList { get; set; }
     public IList<int>? TwoList { get; set; }
